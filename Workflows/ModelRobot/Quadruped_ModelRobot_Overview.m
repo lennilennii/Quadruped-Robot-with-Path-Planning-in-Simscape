@@ -12,5 +12,6 @@
 % # Jumping 2 Legs: <matlab:open_system('sm_qp05_jumping_2legs') Model>, <matlab:open('sm_qp05_jumping_2legs_soln') Solution>
 % # Walk Line: <matlab:open_system('sm_qp06_walk_line') Model>, <matlab:open('sm_qp06_walk_line_soln') Solution>
 % # Shoulder UJoint: <matlab:open_system('sm_qp07_shoulder_ujoint') Model>, <matlab:open('sm_qp07_shoulder_ujoint_soln') Solution>
+% # Crawl 4 Legs: <matlab:open_system('sm_qp08_crawl_4legs') Model>, <matlab:open('sm_qp08_crawl_4legs') Solution>
 
 % Copyright 2023-2024 The MathWorks(TM), Inc.

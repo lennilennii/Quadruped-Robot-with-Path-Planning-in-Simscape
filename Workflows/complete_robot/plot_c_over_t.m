@@ -5,6 +5,7 @@ function plot_c_over_t(save, struct)
     plot(time, data);
     xlabel('Time');
     ylabel('Control value');
+    ylim([0, 7.1])
     title('Control value over time');
 
     if save

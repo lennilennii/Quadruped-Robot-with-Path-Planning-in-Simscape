@@ -8,9 +8,9 @@ struct_t_BL = out.t_BL;
 struct_t_BR = out.t_BR;
 
 save1 = true; % true: Plot saved, false: Plot not saved
-save2 = false;
+save2 = true;
 
 plot_c_over_t(save2, struct_control);
-plot_x_over_t(save2, struct_x);
+plot_x_over_t(save2, struct_x, struct_control);
 plot_temp_over_t(save2,struct_temp);
 plot_several_signals(save2, struct_t_FL.time, struct_t_FL, struct_t_FR, struct_t_BL, struct_t_BR);

@@ -8,22 +8,26 @@ function plot_x_over_t(save, struct, structControl)
     controlChange = [];
     for i=2:length(controlData)
         if controlData(i) ~= controlData(i-1)
-            controlChange(end + 1) = time(i);
+            controlChange(end + 1) = i;
         end
     end
 
     figure;
     plot(time, data);
     hold on;
+    xline(time(controlChange), '--');
     for i=1:length(controlChange)
-        plot ([controlChange(i), controlChange(i)], [dataMin * 1.1, dataMax * 1.1], '--k');
+        if controlData(controlChange(i)) ~= 0
+            text(time(controlChange(i)), dataMax*1.05, num2str(controlData(controlChange(i))));
+        end
     end
     dataMin = min(data);
     dataMax = max(data);
     xlabel('Time');
     ylabel('X-value');
-    ylim([dataMin * 1.1, dataMax * 1.1]);
+    ylim([dataMin, dataMax] * 1.1);
     title('X-value over time');
+    hold off;
 
     if save
         timestamp = datetime('now', 'Format', 'dd_MM-HH_mm');

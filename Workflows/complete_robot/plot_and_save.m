@@ -1,3 +1,5 @@
+close all;
+
 struct_control = out.control_variable;
 struct_x = out.x;
 struct_temp = out.temp;

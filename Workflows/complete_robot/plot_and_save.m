@@ -10,7 +10,7 @@ struct_t_BL = out.t_BL;
 struct_t_BR = out.t_BR;
 
 save1 = true; % true: Plot saved, false: Plot not saved
-save2 = true;
+save2 = false;
 
 plot_c_over_t(save2, struct_control);
 plot_x_over_t(save2, struct_x, struct_control);

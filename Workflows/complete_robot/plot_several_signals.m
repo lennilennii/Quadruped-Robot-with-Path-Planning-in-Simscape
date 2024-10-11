@@ -4,6 +4,7 @@ function plot_several_signals(save,time, struct1, struct2, struct3, struct4)
     data3 = struct3.signals.values;
     data4 = struct4.signals.values;
     
+    figure;
     plot(time, data1);
     hold on;
     plot(time, data2);

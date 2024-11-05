@@ -12,6 +12,8 @@ pointDensity = 15;
 Ball.sphere_ptcld = unique([reshape(X*Ball.Radius,[],1) reshape(Y*Ball.Radius,[],1) reshape(Z*Ball.Radius,[],1)],'rows');
 
 %% Leg %%
+t_leg =0.005;
+L = 0.047;
 legLength = t_leg;  
 legWidth = t_leg;   
 legHeight = L;   

@@ -119,3 +119,28 @@ occupancy((Wall1.index(1) - 1):(Wall1.index(1) + 1), Wall1.index(2)) = 1; % wall
 occupancy((Wall3.index(1) - 1):(Wall3.index(1) + 1), Wall3.index(2)) = 1; % wall 3 transform to occupancy grid
 occupancy((Wall4.index(1) - 1):(Wall4.index(1) + 1), Wall4.index(2)) = 1; % wall 4 transform to occupancy grid 
 occupancy((Wall6.index(1) - 1):(Wall6.index(1) + 1), Wall6.index(2)) = 1; % wall 6 transform to occupancy grid
+
+
+% Bump Data
+Bump_Height = 0.02;
+Bump_Length = 0.3;
+Bump_Width = 0.05;
+
+%Bump 1
+Bump1.index = [35, 13];
+Bump1.position = [x_grid_vector(Bump1.index(1)), y_grid_vector(Bump1.index(2)), z_heights(Bump1.index(1), Bump1.index(2))];
+Bump1.size = [Bump_Width, Bump_Length, Bump_Height]; 
+
+%Bump 2
+Bump2.index = [36, 13];
+Bump2.position = [x_grid_vector(Bump2.index(1)), y_grid_vector(Bump2.index(2)), z_heights(Bump2.index(1), Bump2.index(2))];
+Bump2.size = [Bump_Width, Bump_Length, Bump_Height]; 
+
+%Bump 3
+Bump3.index = [37, 13];
+Bump3.position = [x_grid_vector(Bump3.index(1)), y_grid_vector(Bump3.index(2)), z_heights(Bump3.index(1), Bump3.index(2))];
+Bump3.size = [Bump_Width, Bump_Length, Bump_Height]; 
+
+occupancy((Bump1.index(1) - 1):(Bump1.index(1) + 1), Bump1.index(2)) = 1;
+occupancy((Bump2.index(1) - 1):(Bump2.index(1) + 1), Bump2.index(2)) = 1;
+occupancy((Bump3.index(1) - 1):(Bump3.index(1) + 1), Bump3.index(2)) = 1;

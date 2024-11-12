@@ -1,8 +1,11 @@
-function plot_c_over_t(save, struct)
+function plot_c_over_t(save, struct, struct2)
     time = struct.time;
     data = struct.signals.values;
+    data2 = struct2.signals.values;
     figure;
     plot(time, data);
+    hold on;
+    plot(time, data2);
     xlabel('Time');
     ylabel('Control value');
     ylim([0, 7.1])

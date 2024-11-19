@@ -68,13 +68,13 @@ Wall_Width = 0.8;
 
 
 % Wall #1
-Wall1.index = [14,10];
+Wall1.index = [14,12];
 Wall1.position = [x_grid_vector(Wall1.index(1)), y_grid_vector(Wall1.index(2)), z_heights(Wall1.index(1), Wall1.index(2))];
 Wall1.size = [Wall_Width, Wall_Length, Wall_Height]; 
 
 
 % Wall #3
-Wall3.index = [24, 16];
+Wall3.index = [24, 18];
 Wall3.position = [x_grid_vector(Wall3.index(1)), y_grid_vector(Wall3.index(2)), z_heights(Wall3.index(1), Wall3.index(2))];
 Wall3.size = [Wall_Width, Wall_Length, Wall_Height];
 
@@ -92,13 +92,13 @@ Wall2.size = [sqrt((delta_x)^2 + (delta_y)^2), Wall_Length, Wall_Height];
 
 
 % Wall #4
-Wall4.index = [14,8];
+Wall4.index = [14,6];
 Wall4.position = [x_grid_vector(Wall4.index(1)), y_grid_vector(Wall4.index(2)), z_heights(Wall4.index(1), Wall4.index(2))];
 Wall4.size = [Wall_Width, Wall_Length, Wall_Height];
 
 
 % Wall #6
-Wall6.index = [24, 14];
+Wall6.index = [24, 12];
 Wall6.position = [x_grid_vector(Wall6.index(1)), y_grid_vector(Wall6.index(2)), z_heights(Wall6.index(1), Wall6.index(2))];
 Wall6.size = [Wall_Width, Wall_Length, Wall_Height];
 
@@ -128,6 +128,7 @@ n_x_2 = delta_x_2 / grid_step;
 n_y_2 = delta_y_2 / grid_step;
 
 v = n_y / n_x;
+v_2 = n_y_2 / n_x_2;
 
 for i = 0:n_y
     occupancy(((Wall1.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v) * i)):(Wall1.index(1) + (Wall_Width / 2) / grid_step) + round((1/v) * (i + 1))), Wall1.index(2) + i) = 1;
@@ -135,32 +136,32 @@ for i = 0:n_y
     occupancy(((Wall1.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v) * i)):(Wall1.index(1) + (Wall_Width / 2) / grid_step) + round((1/v) * (i + 1))), Wall1.index(2) + (i + 1)) = 1;
 end
 
-for i = 0:n_y_2
-    occupancy(((Wall4.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v) * i)):(Wall4.index(1) + (Wall_Width / 2) / grid_step) + round((1/v) * (i + 1))), Wall4.index(2) + i) = 1;
+for i = 0:n_y
+    occupancy(((Wall4.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_2) * i)):(Wall4.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_2) * (i + 1))), Wall4.index(2) + i) = 1;
 
-    occupancy(((Wall4.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v) * i)):(Wall4.index(1) + (Wall_Width / 2) / grid_step) + round((1/v) * (i + 1))), Wall4.index(2) + (i + 1)) = 1;
+    occupancy(((Wall4.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_2) * i)):(Wall4.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_2) * (i + 1))), Wall4.index(2) + (i + 1)) = 1;
 end
 
-% Bump Data
-Bump_Height = 0.02;
-Bump_Length = 0.3;
-Bump_Width = 0.05;
-
-%Bump 1
-Bump1.index = [35, 13];
-Bump1.position = [x_grid_vector(Bump1.index(1)), y_grid_vector(Bump1.index(2)), z_heights(Bump1.index(1), Bump1.index(2))];
-Bump1.size = [Bump_Width, Bump_Length, Bump_Height]; 
-
-%Bump 2
-Bump2.index = [36, 13];
-Bump2.position = [x_grid_vector(Bump2.index(1)), y_grid_vector(Bump2.index(2)), z_heights(Bump2.index(1), Bump2.index(2))];
-Bump2.size = [Bump_Width, Bump_Length, Bump_Height]; 
-
-%Bump 3
-Bump3.index = [37, 13];
-Bump3.position = [x_grid_vector(Bump3.index(1)), y_grid_vector(Bump3.index(2)), z_heights(Bump3.index(1), Bump3.index(2))];
-Bump3.size = [Bump_Width, Bump_Length, Bump_Height]; 
-
-% occupancy((Bump1.index(1) - 1):(Bump1.index(1) + 1), Bump1.index(2)) = 1;
-% occupancy((Bump2.index(1) - 1):(Bump2.index(1) + 1), Bump2.index(2)) = 1;
-% occupancy((Bump3.index(1) - 1):(Bump3.index(1) + 1), Bump3.index(2)) = 1;
+% % Bump Data
+% Bump_Height = 0.02;
+% Bump_Length = 0.3;
+% Bump_Width = 0.05;
+% 
+% %Bump 1
+% Bump1.index = [35, 13];
+% Bump1.position = [x_grid_vector(Bump1.index(1)), y_grid_vector(Bump1.index(2)), z_heights(Bump1.index(1), Bump1.index(2))];
+% Bump1.size = [Bump_Width, Bump_Length, Bump_Height]; 
+% 
+% %Bump 2
+% Bump2.index = [36, 13];
+% Bump2.position = [x_grid_vector(Bump2.index(1)), y_grid_vector(Bump2.index(2)), z_heights(Bump2.index(1), Bump2.index(2))];
+% Bump2.size = [Bump_Width, Bump_Length, Bump_Height]; 
+% 
+% %Bump 3
+% Bump3.index = [37, 13];
+% Bump3.position = [x_grid_vector(Bump3.index(1)), y_grid_vector(Bump3.index(2)), z_heights(Bump3.index(1), Bump3.index(2))];
+% Bump3.size = [Bump_Width, Bump_Length, Bump_Height]; 
+% 
+% % occupancy((Bump1.index(1) - 1):(Bump1.index(1) + 1), Bump1.index(2)) = 1;
+% % occupancy((Bump2.index(1) - 1):(Bump2.index(1) + 1), Bump2.index(2)) = 1;
+% % occupancy((Bump3.index(1) - 1):(Bump3.index(1) + 1), Bump3.index(2)) = 1;

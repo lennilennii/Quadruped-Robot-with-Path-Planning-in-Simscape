@@ -41,7 +41,7 @@ for i = 1:1:5
 end
 
 for i = 5:1:9
-    z_heights(i+1,:) = z_heights(i,:) + 0.1;
+    z_heights(i+1,:) = z_heights(i,:) + 0.05;
 end
 
 for i = 10:1:39
@@ -49,7 +49,7 @@ for i = 10:1:39
 end
 
 for i = 40:1:44
-    z_heights(i+1,:) = z_heights(i,:) - 0.1;
+    z_heights(i+1,:) = z_heights(i,:) - 0.05;
 end
 
 for i = 46:1:51

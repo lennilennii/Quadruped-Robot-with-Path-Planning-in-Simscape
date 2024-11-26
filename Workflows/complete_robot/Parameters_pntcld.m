@@ -166,9 +166,9 @@ n_y = delta_y / grid_step;
 n_x_2 = delta_x_2 / grid_step;
 n_y_2 = delta_y_2 / grid_step;
 n_x_3 = delta_x_3 / grid_step;
-n_y_3 = delta_y_3 / grid_step;
+n_y_3 = abs(delta_y_3 / grid_step);
 n_x_4 = delta_x_4 / grid_step;
-n_y_4 = delta_y_4 / grid_step;
+n_y_4 = abs(delta_y_4 / grid_step);
 
 
 v = n_y / n_x;

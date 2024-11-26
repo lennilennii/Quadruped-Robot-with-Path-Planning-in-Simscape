@@ -102,7 +102,6 @@ Wall6.index = [24, 12];
 Wall6.position = [x_grid_vector(Wall6.index(1)), y_grid_vector(Wall6.index(2)), z_heights(Wall6.index(1), Wall6.index(2))];
 Wall6.size = [Wall_Width, Wall_Length, Wall_Height];
 
-
 % Compute the angle between Wall 4 & 6
 delta_x_2 = (Wall6.position(1)-Wall6.size(1)/2) - (Wall4.position(1) + Wall4.size(1)/2) ;
 delta_y_2 = y_grid_vector(Wall6.index(2)) - y_grid_vector(Wall4.index(2));
@@ -114,6 +113,44 @@ Wall5.index = [(Wall4.index(1)+Wall6.index(1))/2, (Wall4.index(2)+Wall6.index(2)
 Wall5.position = [x_grid_vector(Wall5.index(1)), y_grid_vector(Wall5.index(2)), z_heights(Wall5.index(1), Wall5.index(2))];
 Wall5.size = [sqrt((delta_x_2)^2 + (delta_y_2)^2), Wall_Length, Wall_Height];
 
+% Wall #8
+Wall8.index = [32, 16];
+Wall8.position = [x_grid_vector(Wall8.index(1)), y_grid_vector(Wall8.index(2)), z_heights(Wall8.index(1), Wall8.index(2))];
+Wall8.size = [Wall_Width, Wall_Length, Wall_Height];
+
+% Compute the angle between Wall 3 & 8
+delta_x_3 = (Wall8.position(1)-Wall8.size(1)/2) - (Wall3.position(1) + Wall3.size(1)/2) ;
+delta_y_3 = y_grid_vector(Wall8.index(2)) - y_grid_vector(Wall3.index(2));
+theta_3 = atan2(delta_y_3, delta_x_3);  
+theta_val3 = theta_3;
+
+% Wall #7
+Wall7.index = [(Wall3.index(1)+Wall8.index(1))/2, (Wall3.index(2)+Wall8.index(2))/2 ];
+Wall7.position = [x_grid_vector(Wall7.index(1)), y_grid_vector(Wall7.index(2)), z_heights(Wall7.index(1), Wall7.index(2))];
+Wall7.size = [sqrt((delta_x_3)^2 + (delta_y_3)^2), Wall_Length, Wall_Height];
+
+% Wall #10
+Wall10.index = [32, 10];
+Wall10.position = [x_grid_vector(Wall10.index(1)), y_grid_vector(Wall10.index(2)), z_heights(Wall10.index(1), Wall10.index(2))];
+Wall10.size = [Wall_Width, Wall_Length, Wall_Height];
+
+% Compute the angle between Wall 6 & 10
+delta_x_4 = (Wall10.position(1)-Wall10.size(1)/2) - (Wall6.position(1) + Wall6.size(1)/2) ;
+delta_y_4 = y_grid_vector(Wall10.index(2)) - y_grid_vector(Wall6.index(2));
+theta_4 = atan2(delta_y_4, delta_x_4);  
+theta_val4 = theta_4;
+
+% Wall #9
+Wall9.index = [(Wall6.index(1)+Wall10.index(1))/2, (Wall6.index(2)+Wall10.index(2))/2];
+Wall9.position = [x_grid_vector(Wall9.index(1)), y_grid_vector(Wall9.index(2)), z_heights(Wall9.index(1), Wall9.index(2))];
+Wall9.size = [sqrt((delta_x_4)^2 + (delta_y_4)^2), Wall_Length, Wall_Height];
+
+
+
+
+
+
+
 
 occupancy = zeros(length(x_grid_vector), length(y_grid_vector));
 
@@ -121,31 +158,57 @@ occupancy(((Wall1.index(1) - ((Wall_Width / 2) / grid_step)):(Wall1.index(1) + (
 occupancy(((Wall3.index(1) - ((Wall_Width / 2) / grid_step)):(Wall3.index(1) + (Wall_Width / 2) / grid_step)), Wall3.index(2)) = 1; % wall 3 transform to occupancy grid
 occupancy(((Wall4.index(1) - ((Wall_Width / 2) / grid_step)):(Wall4.index(1) + (Wall_Width / 2) / grid_step)), Wall4.index(2)) = 1; % wall 4 transform to occupancy grid 
 occupancy(((Wall6.index(1) - ((Wall_Width / 2) / grid_step)):(Wall6.index(1) + (Wall_Width / 2) / grid_step)), Wall6.index(2)) = 1; % wall 6 transform to occupancy grid
+occupancy(((Wall8.index(1) - ((Wall_Width / 2) / grid_step)):(Wall8.index(1) + (Wall_Width / 2) / grid_step)), Wall8.index(2)) = 1; % wall 8 transform to occupancy grid
+occupancy(((Wall10.index(1) - ((Wall_Width / 2) / grid_step)):(Wall10.index(1) + (Wall_Width / 2) / grid_step)), Wall10.index(2)) = 1; % wall 10 transform to occupancy grid
 
 n_x = delta_x / grid_step;
 n_y = delta_y / grid_step;
 n_x_2 = delta_x_2 / grid_step;
 n_y_2 = delta_y_2 / grid_step;
+n_x_3 = delta_x_3 / grid_step;
+n_y_3 = delta_y_3 / grid_step;
+n_x_4 = delta_x_4 / grid_step;
+n_y_4 = delta_y_4 / grid_step;
+
 
 v = n_y / n_x;
 v_2 = n_y_2 / n_x_2;
+v_3 = n_y_3 / n_x_3;
+v_4 = n_y_4 / n_x_4;
 
+% wall 2 transform to occupancy grid
 for i = 0:n_y
     occupancy(((Wall1.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v) * i)):(Wall1.index(1) + (Wall_Width / 2) / grid_step) + round((1/v) * (i + 1))), Wall1.index(2) + i) = 1;
 
     occupancy(((Wall1.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v) * i)):(Wall1.index(1) + (Wall_Width / 2) / grid_step) + round((1/v) * (i + 1))), Wall1.index(2) + (i + 1)) = 1;
 end
-
+% wall 5 transform to occupancy grid
 for i = 0:n_y
     occupancy(((Wall4.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_2) * i)):(Wall4.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_2) * (i + 1))), Wall4.index(2) + i) = 1;
 
     occupancy(((Wall4.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_2) * i)):(Wall4.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_2) * (i + 1))), Wall4.index(2) + (i + 1)) = 1;
 end
 
+% wall 7 transform to occupancy grid
+for i = 0:n_y_3
+    occupancy(((Wall3.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_3) * i)):(Wall3.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_3) * (i + 1))), Wall3.index(2) + i) = 1;
+
+    occupancy(((Wall3.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_3) * i)):(Wall3.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_3) * (i + 1))), Wall3.index(2) + (i + 1)) = 1;
+end
+
+
+% wall 9 transform to occupancy grid
+
+for i = 0:n_y_4
+    occupancy(((Wall6.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_4) * i)):(Wall6.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_4) * (i + 1))), Wall6.index(2) + i) = 1;
+
+    occupancy(((Wall6.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_4) * i)):(Wall6.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_4) * (i + 1))), Wall6.index(2) + (i + 1)) = 1;
+end
+
 % % Bump Data
 % Bump_Height = 0.02;
 % Bump_Length = 0.3;
-% Bump_Width = 0.05;
+% Bump_Width = 0.4;
 % 
 % %Bump 1
 % Bump1.index = [35, 13];

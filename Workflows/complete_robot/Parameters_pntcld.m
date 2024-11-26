@@ -71,19 +71,19 @@ y_grid_vector = 0:grid_step:5;
 z_heights = zeros(length(x_grid_vector), length(y_grid_vector));
 
 for i = 1:1:5
-    z_heights(i,3:end) = 0;
+    z_heights(i,:) = 0;
 end
 
 for i = 5:1:9
-    z_heights(i+1,3:end) = z_heights(i,3:end) + 0.01;
+    z_heights(i+1,:) = z_heights(i,:) + 0.05;
 end
 
 for i = 10:1:39
-    z_heights(i+1,3:end) = z_heights(i,3:end);
+    z_heights(i+1,:) = z_heights(i,:);
 end
 
 for i = 40:1:44
-    z_heights(i+1,3:end) = z_heights(i,3:end) - 0.01;
+    z_heights(i+1,:) = z_heights(i,:) - 0.05;
 end
 
 for i = 46:1:51

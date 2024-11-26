@@ -27,6 +27,40 @@ Leg.PointCloud.MarkerRadius  = 5e-4*1.5;          % m
 
 leg_PointCloud = unique([x(:), y(:), z(:)], 'rows');
 
+%% Bottle %%
+Length_torso = 0.2;
+Width_torso = 0.1;
+height_bottle = Width_torso * 0.5;
+radius_bottle = Length_torso * 0.07;
+density_bottle = 100;
+bottle_point_density = 15;
+
+% [X,Y] = circle(round(bottle_point_density));
+% theta = linspace(0,2*pi,bottle_point_density);
+theta = 0:0.3:2*pi;
+% x_top =radius_bottle*cos(theta);
+% y_top = radius_bottle*sin(theta);
+% z_top = height_bottle/2*ones(size(theta));
+
+x_top = [radius_bottle*cos(theta), radius_bottle*cos(theta)];
+y_top = [radius_bottle*sin(theta), radius_bottle*sin(theta)];
+z_top = [-(height_bottle/2)*ones(1,size(x_top,2)/2), (height_bottle/2)*ones(1,size(x_top,2)/2)];
+% z_top = height_bottle/2*ones(size(theta));
+
+% x_bottom =radius_bottle*cos(theta);
+% y_bottom = radius_bottle*sin(theta);
+% z_bottom = -height_bottle/2*ones(size(theta));
+
+% Create X, Y, Z Grid Coordinates 
+[x, y, z] = ndgrid(x_top, ...
+                   y_top, ...
+                   linspace(0, height_bottle, 2));
+
+
+% Bottle_PointCloud = transpose(unique([x_top, y_top, z_top;x_bottom,y_bottom,z_bottom],'rows'));
+
+Bottle_PointCloud = unique([x_top(:), y_top(:), z_top(:)], 'rows');
+
 %% Occupancy Grid %%
 
 grid_step = 0.2;
@@ -37,19 +71,19 @@ y_grid_vector = 0:grid_step:5;
 z_heights = zeros(length(x_grid_vector), length(y_grid_vector));
 
 for i = 1:1:5
-    z_heights(i,:) = 0;
+    z_heights(i,3:end) = 0;
 end
 
 for i = 5:1:9
-    z_heights(i+1,:) = z_heights(i,:) + 0.05;
+    z_heights(i+1,3:end) = z_heights(i,3:end) + 0.01;
 end
 
 for i = 10:1:39
-    z_heights(i+1,:) = z_heights(i,:);
+    z_heights(i+1,3:end) = z_heights(i,3:end);
 end
 
 for i = 40:1:44
-    z_heights(i+1,:) = z_heights(i,:) - 0.05;
+    z_heights(i+1,3:end) = z_heights(i,3:end) - 0.01;
 end
 
 for i = 46:1:51

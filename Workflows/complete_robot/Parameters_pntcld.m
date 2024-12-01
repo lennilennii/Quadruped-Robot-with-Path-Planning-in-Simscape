@@ -74,16 +74,19 @@ for i = 1:1:5
     z_heights(i,:) = 0;
 end
 
-for i = 5:1:9
-    z_heights(i+1,:) = z_heights(i,:) + 0.05;
+for i = 6:1:10
+    z_heights(i,:) = z_heights(i-1,:) + 0.05;
+    
 end
 
-for i = 10:1:39
-    z_heights(i+1,:) = z_heights(i,:);
+for i = 11:1:40
+    z_heights(i,:) = z_heights(i-1,:);
+     
 end
 
-for i = 40:1:44
-    z_heights(i+1,:) = z_heights(i,:) - 0.05;
+for i = 41:1:45
+    z_heights(i,:) = z_heights(i-1,:) - 0.05;
+     
 end
 
 for i = 46:1:51
@@ -103,7 +106,7 @@ Wall_Width = 0.8;
 
 % Wall #1
 Wall1.index = [14,12];
-Wall1.position = [x_grid_vector(Wall1.index(1)), y_grid_vector(Wall1.index(2)), z_heights(Wall1.index(1), Wall1.index(2))];
+Wall1.position = [x_grid_vector(Wall1.index(1)), y_grid_vector(Wall1.index(2)),  z_heights(Wall1.index(1), Wall1.index(2))]; 
 Wall1.size = [Wall_Width, Wall_Length, Wall_Height]; 
 
 
@@ -154,7 +157,7 @@ Wall8.size = [Wall_Width, Wall_Length, Wall_Height];
 
 % Compute the angle between Wall 3 & 8
 delta_x_3 = (Wall8.position(1)-Wall8.size(1)/2) - (Wall3.position(1) + Wall3.size(1)/2) ;
-delta_y_3 = y_grid_vector(Wall3.index(2)) - y_grid_vector(Wall8.index(2));
+delta_y_3 = y_grid_vector(Wall8.index(2)) - y_grid_vector(Wall3.index(2));
 theta_3 = atan2(delta_y_3, delta_x_3);  
 theta_val3 = theta_3;
 
@@ -170,7 +173,7 @@ Wall10.size = [Wall_Width, Wall_Length, Wall_Height];
 
 % Compute the angle between Wall 6 & 10
 delta_x_4 = (Wall10.position(1)-Wall10.size(1)/2) - (Wall6.position(1) + Wall6.size(1)/2) ;
-delta_y_4 = y_grid_vector(Wall6.index(2)) - y_grid_vector(Wall10.index(2));
+delta_y_4 = y_grid_vector(Wall10.index(2)) - y_grid_vector(Wall6.index(2));
 theta_4 = atan2(delta_y_4, delta_x_4);  
 theta_val4 = theta_4;
 
@@ -200,9 +203,9 @@ n_y = delta_y / grid_step;
 n_x_2 = delta_x_2 / grid_step;
 n_y_2 = delta_y_2 / grid_step;
 n_x_3 = delta_x_3 / grid_step;
-n_y_3 = delta_y_3 / grid_step;
+n_y_3 = abs(delta_y_3 / grid_step);
 n_x_4 = delta_x_4 / grid_step;
-n_y_4 = delta_y_4 / grid_step;
+n_y_4 = abs(delta_y_4 / grid_step);
 
 
 v = n_y / n_x;
@@ -234,6 +237,7 @@ end
 % wall 9 transform to occupancy grid
 
 for i = 0:n_y_3
+
     occupancy(((Wall6.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_4) * i)):(Wall6.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_4) * (i + 1))), Wall6.index(2) - i) = 1;
 
     occupancy(((Wall6.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_4) * i)):(Wall6.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_4) * (i + 1))), Wall6.index(2) - (i + 1)) = 1;

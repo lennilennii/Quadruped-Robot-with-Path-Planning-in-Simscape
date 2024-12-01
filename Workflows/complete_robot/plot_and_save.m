@@ -29,8 +29,8 @@ Joints_struct.RR_Kn = out.RR_Kn;
 save1 = true; % true: Plot saved, false: Plot not saved
 save2 = false;
 
-plot_c_over_t(save2, struct_control, struct_control_of_team);
+%plot_c_over_t(save2, struct_control, struct_control_of_team);
 %plot_x_over_t(save2, struct_x, struct_control);
-%plot_temp_over_t(save2,struct_temp);
+plot_temp_over_t(save2,struct_temp);
 %plot_several_signals(save2, struct_t_FL.time, struct_t_FL, struct_t_FR, struct_t_BL, struct_t_BR);
 plot_angles_of_joints(save2, Joints_struct.RL_Sh.time, Joints_struct);

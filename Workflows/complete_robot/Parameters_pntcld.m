@@ -4,12 +4,37 @@
 
 %% Ball %%
 
-Ball.Radius                   = 0.01;                     % m
-Ball.Density                  = 1000;                    % kg/m^3
-Ball.PointCloud.MarkerRadius  = 5e-4*1.5;                % m
-pointDensity = 15;
-[X,Y,Z] = sphere(round(pointDensity));
-Ball.sphere_ptcld = unique([reshape(X*Ball.Radius,[],1) reshape(Y*Ball.Radius,[],1) reshape(Z*Ball.Radius,[],1)],'rows');
+% Ball.Radius                   = 0.01;                     % m
+% Ball.Density                  = 1000;                    % kg/m^3
+% Ball.PointCloud.MarkerRadius  = 5e-4*1.5;                % m
+% pointDensity = 15;
+% [X,Y,Z] = sphere(round(pointDensity));
+% Ball.sphere_ptcld = unique([reshape(X*Ball.Radius,[],1) reshape(Y*Ball.Radius,[],1) reshape(Z*Ball.Radius,[],1)],'rows');
+
+goldenAngle = pi * (3 - sqrt(5));
+numPoints = 200;
+points = zeros(numPoints, 3);
+Ball.Radius = 0.01;                     % m
+Ball.Density = 1000;                    % kg/m^3
+
+for i = 0:numPoints-1
+    theta = goldenAngle * i;
+    z = (2 * i / numPoints) - 1;
+    rZ = sqrt(1 - z^2);
+
+    x = rZ * cos(theta);
+    y = rZ * sin(theta);
+
+    points(i+1,:) = Ball.Radius * [x, y, z];
+end
+
+
+ Ball.PointCloud.MarkerRadius  = 5e-4*1.5;                % m
+% pointDensity = 15;
+% [X,Y,Z] = sphere(round(pointDensity));
+% Ball.sphere_ptcld = unique([reshape(X*Ball.Radius,[],1) reshape(Y*Ball.Radius,[],1) reshape(Z*Ball.Radius,[],1)],'rows');
+Ball.sphere_ptcld = unique([points(:,1), points(:,2), points(:,3)], 'rows');
+
 
 %% Leg %%
 t_leg =0.005;                                    % m
@@ -74,19 +99,16 @@ for i = 1:1:5
     z_heights(i,:) = 0;
 end
 
-for i = 6:1:10
-    z_heights(i,:) = z_heights(i-1,:) + 0.05;
-    
+for i = 5:1:9
+    z_heights(i+1,:) = z_heights(i,:) + 0.02;
 end
 
-for i = 11:1:40
-    z_heights(i,:) = z_heights(i-1,:);
-     
+for i = 10:1:39
+    z_heights(i+1,:) = z_heights(i,:);
 end
 
-for i = 41:1:45
-    z_heights(i,:) = z_heights(i-1,:) - 0.05;
-     
+for i = 40:1:44
+    z_heights(i+1,:) = z_heights(i,:) - 0.02;
 end
 
 for i = 46:1:51
@@ -106,7 +128,7 @@ Wall_Width = 0.8;
 
 % Wall #1
 Wall1.index = [14,12];
-Wall1.position = [x_grid_vector(Wall1.index(1)), y_grid_vector(Wall1.index(2)),  z_heights(Wall1.index(1), Wall1.index(2))]; 
+Wall1.position = [x_grid_vector(Wall1.index(1)), y_grid_vector(Wall1.index(2)), z_heights(Wall1.index(1), Wall1.index(2))];
 Wall1.size = [Wall_Width, Wall_Length, Wall_Height]; 
 
 
@@ -228,19 +250,18 @@ end
 
 % wall 7 transform to occupancy grid
 for i = 0:n_y_3
-    occupancy(((Wall3.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_3) * i)):(Wall3.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_3) * (i + 1))), Wall3.index(2) - i) = 1;
+    occupancy(((Wall3.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_3) * i)):(Wall3.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_3) * (i + 1))), Wall3.index(2) + i) = 1;
 
-    occupancy(((Wall3.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_3) * i)):(Wall3.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_3) * (i + 1))), Wall3.index(2) - (i + 1)) = 1;
+    occupancy(((Wall3.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_3) * i)):(Wall3.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_3) * (i + 1))), Wall3.index(2) + (i + 1)) = 1;
 end
 
 
 % wall 9 transform to occupancy grid
 
-for i = 0:n_y_3
+for i = 0:n_y_4
+    occupancy(((Wall6.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_4) * i)):(Wall6.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_4) * (i + 1))), Wall6.index(2) + i) = 1;
 
-    occupancy(((Wall6.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_4) * i)):(Wall6.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_4) * (i + 1))), Wall6.index(2) - i) = 1;
-
-    occupancy(((Wall6.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_4) * i)):(Wall6.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_4) * (i + 1))), Wall6.index(2) - (i + 1)) = 1;
+    occupancy(((Wall6.index(1) + ((Wall_Width / 2) / grid_step) + round((1/v_4) * i)):(Wall6.index(1) + (Wall_Width / 2) / grid_step) + round((1/v_4) * (i + 1))), Wall6.index(2) + (i + 1)) = 1;
 end
 
 % % Bump Data

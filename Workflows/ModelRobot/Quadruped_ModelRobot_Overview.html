@@ -9,7 +9,7 @@ To make changes, update the MATLAB code and republish this document.
 <title>Quadruped Robot Modeling with Simscape&trade;</title>
 <meta name="generator" content="MATLAB 24.1">
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
-<meta name="DC.date" content="2024-05-31">
+<meta name="DC.date" content="2025-01-29">
 <meta name="DC.source" content="Quadruped_ModelRobot_Overview.m">
 <style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
@@ -77,27 +77,15 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <body>
 <div class="content">
 <h1>Quadruped Robot Modeling with Simscape&trade;</h1>
-<p>This repository contains exercises to help users learn concepts required to model a quadruped robot in Simscape.</p>
+<p>This repository contains a Simscape model of a quadrupeded robot able to walk in flat and inclined terrain, with a environment that presents different obstacles, and the posibility of automatic or interactive control system.</p>
 <p>
-<b>Exercises</b>
+<b>Important files</b>
 </p>
 <div>
 <ol>
-<li>Bouncing Ball: <a href="matlab:open_system('sm_qp01_ball')">Model</a>, <a href="matlab:open('sm_qp01_ball_soln')">Solution</a>
+<li>Complete Robot Model (Run): <a href="matlab:open_system('complete_robot')">Model</a>
 </li>
-<li>Pendulum: <a href="matlab:open_system('sm_qp02_pendulum')">Model</a>, <a href="matlab:open('sm_qp02_pendulum_soln')">Solution</a>
-</li>
-<li>Double Pendulum: <a href="matlab:open_system('sm_qp03_dbl_pendulum')">Model</a>, <a href="matlab:open('sm_qp03_dbl_pendulum_soln')">Solution</a>
-</li>
-<li>Hopping Leg: <a href="matlab:open_system('sm_qp04_hopping_leg')">Model</a>, <a href="matlab:open('sm_qp04_hopping_leg_soln')">Solution</a>
-</li>
-<li>Jumping 2 Legs: <a href="matlab:open_system('sm_qp05_jumping_2legs')">Model</a>, <a href="matlab:open('sm_qp05_jumping_2legs_soln')">Solution</a>
-</li>
-<li>Walk Line: <a href="matlab:open_system('sm_qp06_walk_line')">Model</a>, <a href="matlab:open('sm_qp06_walk_line_soln')">Solution</a>
-</li>
-<li>Shoulder UJoint: <a href="matlab:open_system('sm_qp07_shoulder_ujoint')">Model</a>, <a href="matlab:open('sm_qp07_shoulder_ujoint_soln')">Solution</a>
-</li>
-<li>Crawl 4 Legs: <a href="matlab:open_system('sm_qp08_crawl_4legs')">Model</a>, <a href="matlab:open('sm_qp08_crawl_4legs_soln')">Solution</a>
+<li>Point cloud generation file: <a href="matlab:open_system('Parameters_pntcld.m')">Script</a>
 </li>
 </ol>
 </div>
@@ -114,19 +102,15 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 ##### SOURCE BEGIN #####
 %% Quadruped Robot Modeling with Simscape(TM)
 %
-% This repository contains exercises to help users learn concepts required
-% to model a quadruped robot in Simscape.
+% This repository contains a Simscape model of a quadrupeded robot able to
+% walk in flat and inclined terrain, with a environment that presents
+% different obstacles, and the posibility of automatic or interactive
+% control system.
 %
-% *Exercises*
+% *Important files*
 %
-% # Bouncing Ball: <matlab:open_system('sm_qp01_ball') Model>, <matlab:open('sm_qp01_ball_soln') Solution>
-% # Pendulum: <matlab:open_system('sm_qp02_pendulum') Model>, <matlab:open('sm_qp02_pendulum_soln') Solution>
-% # Double Pendulum: <matlab:open_system('sm_qp03_dbl_pendulum') Model>, <matlab:open('sm_qp03_dbl_pendulum_soln') Solution>
-% # Hopping Leg: <matlab:open_system('sm_qp04_hopping_leg') Model>, <matlab:open('sm_qp04_hopping_leg_soln') Solution>
-% # Jumping 2 Legs: <matlab:open_system('sm_qp05_jumping_2legs') Model>, <matlab:open('sm_qp05_jumping_2legs_soln') Solution>
-% # Walk Line: <matlab:open_system('sm_qp06_walk_line') Model>, <matlab:open('sm_qp06_walk_line_soln') Solution>
-% # Shoulder UJoint: <matlab:open_system('sm_qp07_shoulder_ujoint') Model>, <matlab:open('sm_qp07_shoulder_ujoint_soln') Solution>
-% # Crawl 4 Legs: <matlab:open_system('sm_qp08_crawl_4legs') Model>, <matlab:open('sm_qp08_crawl_4legs_soln') Solution>
+% # Complete Robot Model (Run): <matlab:open_system('complete_robot') Model>
+% # Point cloud generation file: <matlab:open_system('Parameters_pntcld.m') Script>
 
 % Copyright 2023-2024 The MathWorks(TM), Inc.
 

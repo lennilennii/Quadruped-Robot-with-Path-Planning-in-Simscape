@@ -19,3 +19,4 @@ Andreas Apostolatos, Jan Janse van Rensburg, Steve Miller
 
 
 ## License:
+Check LICENSE file in the repository

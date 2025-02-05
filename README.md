@@ -12,7 +12,7 @@ Point cloud generation can be modifyed from:
 
 ## Authors: 
 Andrés Eduardo Renjifo Restrepo, Sigi Deliallisi, Leonnard Renner, Isaac
-Charbel, Tejada de la Garza, Roman Podieiablonskii, Chien Yu Hua
+Charbel Tejeda de la Garza, Roman Podieiablonskii, Chien Yu Hua
 
 ## Supervisors:
 Andreas Apostolatos, Jan Janse van Rensburg, Steve Miller

@@ -9,7 +9,7 @@ To make changes, update the MATLAB code and republish this document.
 <title>Quadruped Robot Modeling with Simscape&trade;</title>
 <meta name="generator" content="MATLAB 24.2">
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
-<meta name="DC.date" content="2025-01-31">
+<meta name="DC.date" content="2025-02-05">
 <meta name="DC.source" content="Quadruped_ModelRobot_Overview.m">
 <style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
@@ -79,7 +79,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <h1>Quadruped Robot Modeling with Simscape&trade;</h1>
 <p>This repository contains a Simscape model of a quadruped robot able to walk on flat and inclined terrain, with a environment that presents different obstacles, and the posibility of open-loop or interactive control system.</p>
 <p>
-<b>Important files</b>
+<b>Main files</b>
 </p>
 <div>
 <ol>
@@ -89,6 +89,30 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 </li>
 </ol>
 </div>
+<p>
+<b>Get up to speed</b>
+</p>
+<p>- Tutorial 1: <a href="matlab:open_system('t01_one_leg')">Create gait</a>
+</p>
+<p>The focus of this tutorial is set on implementing the gait function for one leg, that it moves realistically and is able to perform a step forward.</p>
+<p>- Tutorial 2: <a href="matlab:open_system('t02_one_leg_sideways_movement')">Create sideways gait</a>
+</p>
+<p>The focus of this tutorial is set on implementing an additional sideways joint in a leg, that it is able to perform a lateral step which is later needed for turning and walking sideways.</p>
+<p>- Tutorial 3: <a href="matlab:open_system('t03_cobine_legs_to_torso')">Combine legs and torso</a>
+</p>
+<p>This tutorial consists of building the first state of a walking four legged robot, based on the leg elements and the gait functions from tutorial 1 and 2.</p>
+<p>- Tutorial 4: <a href="matlab:open_system('t04_combine_gaits')">Combine different gaits</a>
+</p>
+<p>In this tutorial several gaits need to be combined that the robot is able to perform different movements, depending on the control value which acts as an input.</p>
+<p>- Tutorial 5: <a href="matlab:open_system('t05_balancing')">Balancing</a>
+</p>
+<p>In this tutorial a balancing function has to be implemented to make the center of gravity of the robot remain in the center of the support feet so the robot is stable even in inclined terrain.</p>
+<p>- Tutorial 6: <a href="matlab:open_system('t06_manual_control')">Manual control</a>
+</p>
+<p>This tutorial addresses how to connect an external controller (e.g. from an Xbox) and use it to manually guide the robot.</p>
+<p>- Tutorial 7: <a href="matlab:open_system('t07_open_loop_control')">Open-loop control</a>
+</p>
+<p>This tutorial addresses some parts of the control process, from the generation of the ideal path based in the occupancy grid, to the sequential reading of the commands array.</p>
 <pre class="codeinput">
 <span class="comment">% Copyright 2023-2024 The MathWorks(TM), Inc.</span>
 </pre>
@@ -107,10 +131,52 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 % different obstacles, and the posibility of open-loop or interactive
 % control system.
 %
-% *Important files*
+% *Main files*
 %  
 % # Complete Robot Model (Run): <matlab:open_system('complete_robot') Model>
 % # Point cloud generation file: <matlab:edit('Parameters_pntcld.m') Script>
+% 
+% *Get up to speed*
+%
+% - Tutorial 1: <matlab:open_system('t01_one_leg') Create gait>
+%
+% The focus of this tutorial is set on implementing the gait function for 
+% one leg, that it moves realistically and is able to perform a step forward.
+% 
+% - Tutorial 2: <matlab:open_system('t02_one_leg_sideways_movement') Create sideways gait>
+%
+% The focus of this tutorial is set on implementing an additional sideways 
+% joint in a leg, that it is able to perform a lateral step which is later 
+% needed for turning and walking sideways.
+%
+% - Tutorial 3: <matlab:open_system('t03_cobine_legs_to_torso') Combine legs and torso>
+%
+% This tutorial consists of building the first state of a walking four 
+% legged robot, based on the leg elements and the gait functions from 
+% tutorial 1 and 2.
+%
+% - Tutorial 4: <matlab:open_system('t04_combine_gaits') Combine different gaits>
+%
+% In this tutorial several gaits need to be combined that the robot is able 
+% to perform different movements, depending on the control value which acts 
+% as an input.
+%
+% - Tutorial 5: <matlab:open_system('t05_balancing') Balancing>
+%
+% In this tutorial a balancing function has to be implemented to make the
+% center of gravity of the robot remain in the center of the support feet
+% so the robot is stable even in inclined terrain.
+%
+% - Tutorial 6: <matlab:open_system('t06_manual_control') Manual control>
+%
+% This tutorial addresses how to connect an external controller (e.g. from 
+% an Xbox) and use it to manually guide the robot.
+%
+% - Tutorial 7: <matlab:open_system('t07_open_loop_control') Open-loop control>
+%
+% This tutorial addresses some parts of the control process, from the 
+% generation of the ideal path based in the occupancy grid, to the 
+% sequential reading of the commands array.
 
 % Copyright 2023-2024 The MathWorks(TM), Inc.
 

@@ -2,7 +2,7 @@
 This repository contains a Simscape model of a quadrupeded robot able to 
 walk on flat and inclined terrain, with a environment that presents 
 different obstacles, and the posibility of open-loop or interactive control 
-system for the Software Lab project in 2024.
+system.
 
 ## *Usage:*
 Use Simscape 2024b version or newer to run the files

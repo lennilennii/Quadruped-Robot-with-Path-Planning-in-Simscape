@@ -1,4 +1,4 @@
-## *digital-twin-of-a-quadruped-in-simscape*
+## *Quadruped Robot with Path Planning in Simscape*
 This repository contains a Simscape model of a quadrupeded robot able to 
 walk on flat and inclined terrain, with a environment that presents 
 different obstacles, and the posibility of open-loop or interactive control 

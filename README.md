@@ -5,7 +5,7 @@ different obstacles, and the posibility of open-loop or interactive control
 system for the Software Lab project in 2024.
 
 ## *Usage:*
-You will need MATLAB version 2024b or superior, Simulink, Simscape.
+Use Simscape 2024b version or newer to run the files
 
 Run model from file: '/Workflows/complete_robot/complete_robot.slx'
 

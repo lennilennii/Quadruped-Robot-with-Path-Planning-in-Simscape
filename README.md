@@ -62,5 +62,5 @@ Point cloud generation can be modified from:
 Andrés Eduardo Renjifo Restrepo, Sigi Deliallisi, Leonnard Renner, Isaac
 Charbel Tejeda de la Garza, Roman Podieiablonskii, Chien Yu Hua
 
-## *Supervisors:*
+## *Advisors:*
 Andreas Apostolatos, Jan Janse van Rensburg, Steve Miller

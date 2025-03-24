@@ -52,11 +52,6 @@ Point cloud generation can be modified from:
     This tutorial addresses how to connect an external controller (e.g. from 
     an Xbox) and use it to manually guide the robot.
 
-* *Tutorial 7: Open-loop control('/Tutorials/07_Open_loop_control/t07_open_loop_control')*
-
-    This tutorial addresses some parts of the control process, from the 
-    generation of the ideal path based in the occupancy grid, to the 
-    sequential reading of the commands array.
 
 ## *Authors:*
 Andrés Eduardo Renjifo Restrepo, Sigi Deliallisi, Leonnard Renner, Isaac
